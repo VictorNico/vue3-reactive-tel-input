@@ -573,9 +573,10 @@ export default /*#__PURE__*/defineComponent({
     />
   </div>
 </template>
-<style src="@/assets/sprite.css" scoped></style>
 <style scoped>
-  .vue3-reactive-tel-input {
+@import "../assets/sprite.css";
+  
+.vue3-reactive-tel-input {
   border-radius: 3px;
   display: flex;
   border: 1px solid #bbb;

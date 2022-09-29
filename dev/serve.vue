@@ -1,7 +1,5 @@
 <script>
 import { defineComponent } from 'vue';
-import { ref  } from 'vue';
-import {mapGetters} from 'vuex'
 // Uncomment import and local "components" registration if library is not registered globally.
 // import { Vue3ReactiveTelInputSample } from '@/entry.esm';
 
