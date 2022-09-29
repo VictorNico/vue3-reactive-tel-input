@@ -9,7 +9,8 @@ International Telephone Input with Vue.
 
 ## Documentation and live demo
 
-[Visit the website](https://educationlink.github.io/vue-tel-input/)
+[Visit the website](https://codesandbox.io/s/interesting-elgamal-xnoqu9)
+
 
 ## Getting started
 - Install the plugin:
@@ -23,7 +24,7 @@ International Telephone Input with Vue.
   ```javascript
   import { createApp } from 'vue'
   import App from './App.vue'
-  import {Vue3ReactiveTelInput} from 'vue3-reactive-tel-input'
+  import Vue3ReactiveTelInput from 'vue3-reactive-tel-input'
 
   const app = createApp(App);
   app.use(Vue3ReactiveTelInput);
@@ -35,9 +36,93 @@ International Telephone Input with Vue.
 - Use the `vue3-reactive-tel-input` component:
 
   ```html
+  <!-- component.vue -->
   <template>
-    <vue3-reactive-tel-input v-model:value="phone"></vue3-reactive-tel-input>
-  <template>
+    <h1 class="container mb-5 text-black font-bold">vue3-reactive-tel-input</h1>
+
+    <div class="container mt-2">
+      <h2 class="text-black font-bold">Using data prop</h2>
+      <vue3-reactive-tel-input v-model:value="dataphone" />
+
+      <span>data prop: {{ dataphone }}</span
+      ><br />
+      <span>vuex data prop: {{ vuexphone }}</span>
+    </div>
+    <div class="container mt-5">
+      <h2 class="text-black font-bold">Using vuex data prop</h2>
+      <vue3-reactive-tel-input v-model:value="vuexphone" />
+
+      <span>data prop: {{ dataphone }}</span
+      ><br />
+      <span>vuex data prop: {{ vuexphone }}</span>
+    </div>
+  </template>
+  <script>
+    export default {
+      name: "App",
+      data() {
+        return {
+          dataphone: "675490728",
+        };
+      },
+      computed: {
+        vuexphone: {
+          get() {
+            return this.$store.getters.vuexphone;
+          },
+          set(value) {
+            this.$store.dispatch("update_vuexphone", value);
+          },
+        },
+      },
+    };
+  </script>
+
+  ```
+
+  ```javascript
+  // main.js
+  import { createApp } from 'vue'
+  import App from './App.vue'
+  import Vue3ReactiveTelInput from 'vue3-reactive-tel-input'
+  import 'bootstrap/dist/css/bootstrap.min.css'
+  import 'bootstrap'
+  import { createStore } from 'vuex' 
+
+  const vuexModel = {
+    state: () => ({
+        vuexphone: '620836564',
+    }),
+
+    actions: {
+        update_vuexphone( { commit },data ){
+            commit( 'UPDATE_VUEXPHONE', data );
+        }
+    },
+
+    mutations: {
+        UPDATE_VUEXPHONE( state,payload ){
+            state.vuexphone = payload;
+        },
+    },
+
+    getters: {
+        vuexphone( state ){
+            return state.vuexphone;
+        },
+    }
+  }
+
+  const store = createStore({
+    modules: {
+      vuexModel,
+    }
+    
+  })
+
+  createApp(App).use(store).use(Vue3ReactiveTelInput).mount('#app')
+
+
   ```
 
 ## Installation
@@ -51,7 +136,7 @@ Install the plugin into Vue:
 ```javascript
   import { createApp } from 'vue'
   import App from './App.vue'
-  import {Vue3ReactiveTelInput} from 'vue3-reactive-tel-input'
+  import Vue3ReactiveTelInput from 'vue3-reactive-tel-input'
 
   const VueTelInputOptions = {
     mode: "international",
@@ -67,28 +152,25 @@ Install the plugin into Vue:
 Or use the component directly:
 
 ```html
-<!-- your-component.vue-->
-<template>
-  <vue3-reactive-tel-input v-model:value="phone" mode="international"></vue3-reactive-tel-input>
-</template>
-<script>
-import { ref } from 'vue'
-import { Vue3ReactiveTelInput } from 'vue3-reactive-tel-input'
+  <!-- your-component.vue-->
+  <template>
+    <vue3-reactive-tel-input v-model:value="phone"></vue3-reactive-tel-input>
+  </template>
+  <script>
+  import { ref } from 'vue'
+  import {Vue3ReactiveTelInput} from 'vue3-reactive-tel-input'
 
-export default {
-  components: {
-    Vue3ReactiveTelInput,
-  },
-
-  setup() {
-    const phone = ref('');
-
-    return {
-      value
+  export default {
+    components: {
+      Vue3ReactiveTelInput,
+    },
+    data(){
+      return {
+        phone:'',
+      }
     }
-  }
-};
-</script>
+  };
+  </script>
 ```
 
 ### Browser
@@ -150,6 +232,7 @@ Read more on `vue-form-generator`'s [instruction page](https://icebob.gitbooks.i
 
 ## License
 
-Copyright &copy; 2022 EducationLink.
-Released under the [MIT License](https://github.com/victorybiz/vue3-tel-input/blob/master/LICENSE).
+Copyright &copy; 2022 Viclegrand28.
+
+Released under the [MIT License](https://github.com/VictorNico/vue3-reactive-tel-input/blob/main/LICENSE).
 
