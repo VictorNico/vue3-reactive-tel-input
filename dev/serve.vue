@@ -10,6 +10,7 @@ export default defineComponent({
   // }
   data(){
     return {
+      dataphone: null
     }
   },
   computed:{
@@ -18,8 +19,13 @@ export default defineComponent({
         return this.$store.getters.phone;
       },
       set(value){
-        this.$store.dispatch('update_phone',value)
+        console.log(value)
+        this.dataphone = value
+        this.$store.dispatch('update_phone',value.formatted)
       }
+    },
+    good(){
+      return this.dataphone ?`(+${this.dataphone.countryCallingCode}) ${this.dataphone.formatted}`:""
     }
   }
 });
@@ -28,6 +34,7 @@ export default defineComponent({
 <template>
   <div id="app" v-cloak>
     <vue3-reactive-tel-input v-model:value="phone" />
-    <span v-text="phone"></span>
+    <span v-text="phone"></span><br/>
+    <span v-text="good"></span>
   </div>
 </template>

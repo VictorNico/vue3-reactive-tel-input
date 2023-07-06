@@ -9,7 +9,12 @@
         "build:es": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format es",
         "build:ssr": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format cjs",
         "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife",
-        "prebuild": "rimraf ./dist"
+        "prebuild": "rimraf ./dist",
+        "postversion": "git push origin && git push origin --tags  && npm publish --access public",
+        "//": "git push origin && git push origin --tags && npm publish --access public",
+        "release:major": "npm version major",
+        "release:minor": "npm version minor",
+        "release:patch": "npm version patch"
     },
     "main": "dist/vue3-reactive-tel-input.ssr.js",
     "module": "dist/vue3-reactive-tel-input.esm.js",

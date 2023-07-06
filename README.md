@@ -52,9 +52,10 @@ International Telephone Input with Vue.
       <h2 class="text-black font-bold">Using vuex data prop</h2>
       <vue3-reactive-tel-input v-model:value="vuexphone" />
 
-      <span>data prop: {{ dataphone }}</span
-      ><br />
-      <span>vuex data prop: {{ vuexphone }}</span>
+      <span>data prop: {{ dataphone }}</span><br />
+      <span>data prop: {{ fullDataPhoneFormated }}</span><br />
+      <span>vuex data prop: {{ vuexphone }}</span><br />
+      <span>data prop: {{ fullVuexPhoneFormated }}</span>
     </div>
   </template>
   <script>
@@ -62,16 +63,68 @@ International Telephone Input with Vue.
       name: "App",
       data() {
         return {
-          dataphone: "675490728",
+          dataphoneObj: null,
+          data: '',
+          vuexphoneObj: null
         };
       },
       computed: {
+        fullDataPhoneFormated(){
+          return this.dataphoneObj ?`(+${this.dataphoneObj.countryCallingCode}) ${this.dataphoneObj.formatted}`:""
+        },
+        fullVuexPhoneFormated(){
+          return this.vuexphoneObj ?`(+${this.vuexphoneObj.countryCallingCode}) ${this.vuexphoneObj.formatted}`:""
+        },
         vuexphone: {
           get() {
             return this.$store.getters.vuexphone;
           },
           set(value) {
-            this.$store.dispatch("update_vuexphone", value);
+            /** Value structure
+             * {
+               "countryCallingCode": "237",
+                "nationalNumber": "6954490914",
+                "number": "+2376954490914",
+                "country": {
+                    "name": "Cameroon (Cameroun)",
+                    "iso2": "CM",
+                    "dialCode": "237",
+                    "priority": 0,
+                    "areaCodes": null
+                },
+                "countryCode": "CM",
+                "valid": false,
+                "formatted": "6 95 44 90 914"
+            }
+          */
+            this.vuexphoneObj = value;
+            this.$store.dispatch("update_vuexphone", value.formatted);
+          },
+        },
+        dataphone: {
+          get() {
+            return data;
+          },
+          set(value) {
+            /** Value structure
+             * {
+               "countryCallingCode": "237",
+                "nationalNumber": "6954490914",
+                "number": "+2376954490914",
+                "country": {
+                    "name": "Cameroon (Cameroun)",
+                    "iso2": "CM",
+                    "dialCode": "237",
+                    "priority": 0,
+                    "areaCodes": null
+                },
+                "countryCode": "CM",
+                "valid": false,
+                "formatted": "6 95 44 90 914"
+            }
+          */
+            this.dataphoneObj = value;
+            data = value.formatted;
           },
         },
       },

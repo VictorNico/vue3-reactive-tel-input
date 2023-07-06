@@ -142,9 +142,20 @@ export default /*#__PURE__*/defineComponent({
       this.resetPlaceholder();
     },
     value(value, oldValue) {
+      // console.log(this.phoneObject?this.phoneObject.number !== "":false)
       if (!this.testCharacters()) {
+        // console.log(this.phoneObject?this.phoneObject.number !== "":false)
         this.$nextTick(() => { this.phone = oldValue; this.onInput(); });
       } else {
+        // let dataphone;
+        // console.log(this.phoneObject?this.phoneObject !== "":false)
+        // if(this.phoneObject?this.phoneObject !== "":false)
+        // {
+        //   dataphone = this.phoneObject.number
+        // }
+        // else{
+        //   dataphone = value
+        // }
         this.phone = value;
       }
     },
@@ -408,7 +419,7 @@ export default /*#__PURE__*/defineComponent({
       // Returns response.number to assign it to v-model (if being used)
       // Returns full response for cases @input is used
       // and parent wants to return the whole response.
-      this.emitInput(this.phone);
+      this.emitInput(this.phoneObject);
     },
     emitInput(value) {
       this.$emit('update:value', value);
