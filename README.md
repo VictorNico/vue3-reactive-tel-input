@@ -1,7 +1,7 @@
 # vue3-reactive-tel-input
 International Telephone Input with Vue.
 
-[![](https://img.shields.io/npm/dt/vue3-tel-input.svg)](https://www.npmjs.com/package/vue3-reactive-tel-input) [![](https://img.shields.io/github/stars/victorybiz/vue3-tel-input.svg)](https://github.com/victorybiz/vue3-tel-input)
+[![](https://img.shields.io/npm/dt/vue3-tel-input.svg)](https://www.npmjs.com/package/vue3-reactive-tel-input) [![](https://img.shields.io/github/stars/victorybiz/vue3-tel-input.svg)](https://github.com/VictorNico/vue3-reactive-tel-input)
 
 <p align="center">
 <img width="600px" alt="In-action GIF" src="https://thumbs.gfycat.com/EducatedPoliteBluefintuna-size_restricted.gif"/>
@@ -281,11 +281,11 @@ Read more on `vue-form-generator`'s [instruction page](https://icebob.gitbooks.i
 
 
 ## Changelog
-[Go to Github Releases](https://github.com/victorybiz/vue3-tel-input/releases)
+[Go to Github Releases](https://github.com/VictorNico/vue3-reactive-tel-input/releases)
 
 ## License
 
-Copyright &copy; 2022 Viclegrand28.
+Copyright &copy; 2022 [Viclegrand28](https://github.com/VictorNico).
 
 Released under the [MIT License](https://github.com/VictorNico/vue3-reactive-tel-input/blob/main/LICENSE).
 

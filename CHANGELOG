@@ -4,3 +4,11 @@ Added:
 Changed:
     - change the @onInput value promise to phoneObject like describe in the readme file
 Fixed:
+
+[1.2.0] - 06-07-2023
+Author: @Viclegrand28
+Added:
+    - add github action for publish release version of package
+Changed:
+    - update README documentation for more usability
+Fixed:
