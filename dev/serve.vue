@@ -10,7 +10,7 @@ export default defineComponent({
   // }
   data(){
     return {
-      dataphone: null
+      dataphone: undefined
     }
   },
   computed:{
@@ -25,7 +25,7 @@ export default defineComponent({
       }
     },
     good(){
-      return this.dataphone ?`(+${this.dataphone.countryCallingCode}) ${this.dataphone.formatted}`:""
+      return (this.dataphone !== undefined?this.dataphone.valid:false) ?`(+${this.dataphone.countryCallingCode}) ${this.dataphone.formatted}`:""
     }
   }
 });
@@ -33,7 +33,7 @@ export default defineComponent({
 
 <template>
   <div id="app" v-cloak>
-    <vue3-reactive-tel-input v-model:value="phone" />
+    <vue3-reactive-tel-input v-model="phone" />
     <span v-text="phone"></span><br/>
     <span v-text="good"></span>
   </div>

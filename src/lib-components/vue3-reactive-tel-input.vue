@@ -18,9 +18,17 @@ export default /*#__PURE__*/defineComponent({
     clickOutside,
   },
   props: {
-    value: {
+    modelValue: {
       type: String,
       default: '',
+    },
+    badBorder: {
+      type: String,
+      default: '1px solid #c60303',
+    },
+    goodBorder: {
+      type: String,
+      default: '1px solid #45a045',
     },
     allCountries: {
       type: Array,
@@ -93,8 +101,10 @@ export default /*#__PURE__*/defineComponent({
         action: null,
         amount: null,
       },
+      bad: this.badBorder,
+      good: this.goodBorder,
       // vue3-reactive-tel-data
-      phone: this.value ? this.value : '',
+      phone: this.modelValue ? this.modelValue : '',
       activeCountryCode: '',
       open: false,
       finishMounted: false,
@@ -243,7 +253,8 @@ export default /*#__PURE__*/defineComponent({
         metadata,
         ...phoneObject
       } = result;
-
+      /*console.log(result)
+      console.log(result.isValid?result.isValid():'loll')*/
       let valid = result.isValid?.();
       let formatted = this.phone;
 
@@ -266,6 +277,17 @@ export default /*#__PURE__*/defineComponent({
       });
 
       return phoneObject;
+    },
+    idd(){
+      return this.phoneObject.valid === true 
+                  ? 
+                  'good'
+                  :
+                  this.phoneObject.valid === false 
+                      ?
+                      'bad'
+                      :
+                      undefined
     },
   },
   methods: {
@@ -422,7 +444,7 @@ export default /*#__PURE__*/defineComponent({
       this.emitInput(this.phoneObject);
     },
     emitInput(value) {
-      this.$emit('update:value', value);
+      this.$emit('update:modelValue', value);
     },
     onBlur() {
       this.$emit('blur');
@@ -526,7 +548,10 @@ export default /*#__PURE__*/defineComponent({
 </script>
 
 <template>
-  <div :class="['vue3-reactive-tel-input', styleClasses, { disabled: disabled }]">
+  <div 
+    :class="['vue3-reactive-tel-input', styleClasses, { disabled: disabled }]" 
+    :id="idd"
+    >
     <div
       v-click-outside="clickedOutside"
       :class="['vti__dropdown', { open: open }]"
@@ -585,6 +610,14 @@ export default /*#__PURE__*/defineComponent({
   </div>
 </template>
 <style scoped>
+#bad {
+  border: v-bind('bad');
+}
+
+#good {
+  border: v-bind('good');
+}
+
 .vti__flag {
   width: 20px;
 }
@@ -1672,6 +1705,7 @@ export default /*#__PURE__*/defineComponent({
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
   border-color: #66afe9;
 }
+
 .vti__dropdown {
   display: flex;
   flex-direction: column;
