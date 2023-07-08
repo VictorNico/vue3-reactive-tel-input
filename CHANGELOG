@@ -27,3 +27,10 @@ Added:
     - process browser and prevent assignment in rollup config file
 Changed:
 Fixed:
+
+[1.3.2] - 08-07-2023
+Author: @Viclegrand28
+Added:
+Changed:
+Fixed:
+    - update browser list db to latest version
