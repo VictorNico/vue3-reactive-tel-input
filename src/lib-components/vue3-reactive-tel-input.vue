@@ -88,9 +88,33 @@ export default /*#__PURE__*/defineComponent({
       type: Boolean,
       default: () => getDefault('validCharactersOnly'),
     },
-    styleClasses: {
+    rootClass: {
       type: [String, Array, Object],
       default: () => getDefault('styleClasses'),
+    },
+    inputClass: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    rootStyle: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    dropdownStyle: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    listStyle: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    inputStyle: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    inputId: {
+      type: [String, Array, Object],
+      default: () => {return ''},
     },
   },
   data() {
@@ -549,7 +573,8 @@ export default /*#__PURE__*/defineComponent({
 
 <template>
   <div 
-    :class="['vue3-reactive-tel-input', styleClasses, { disabled: disabled }]" 
+    :class="['vue3-reactive-tel-input', rootClass, { disabled: disabled }]" 
+    :style="[rootStyle]" 
     :id="idd"
     >
     <div
@@ -559,6 +584,7 @@ export default /*#__PURE__*/defineComponent({
       @keydown="keyboardNav"
       @click="toggleDropdown"
       @keydown.esc="reset"
+      :style="[dropdownStyle]"
     >
       <span class="vti__selection">
         <div
@@ -572,7 +598,14 @@ export default /*#__PURE__*/defineComponent({
           <span class="vti__dropdown-arrow">{{ open ? "▲" : "▼" }}</span>
         </slot>
       </span>
-      <ul ref="list" class="vti__dropdown-list" v-show="open" :class="dropdownOpenDirection">
+      <ul 
+        ref="list" 
+        class="vti__dropdown-list"
+        v-show="open" 
+        :class="dropdownOpenDirection"
+        :style="[listStyle]"
+         
+         >
         <li
           v-for="(pb, index) in sortedCountries"
           :class="['vti__dropdown-item', getItemClass(index, pb.iso2)]"
@@ -580,7 +613,7 @@ export default /*#__PURE__*/defineComponent({
           @click="choose(pb)"
           @mousemove="selectedIndex = index"
         >
-          <div v-if="dropdownOptions.showFlags" :class="['vti__flag', pb.iso2.toLowerCase()]" />
+          <span v-if="dropdownOptions.showFlags" :class="['vti__flag', pb.iso2.toLowerCase()]" />
           <strong>{{ pb.name }}</strong>
           <span v-if="dropdownOptions.showDialCodeInList"> +{{ pb.dialCode }} </span>
         </li>
@@ -592,9 +625,10 @@ export default /*#__PURE__*/defineComponent({
       :type="inputOptions.type"
       :autocomplete="inputOptions.autocomplete"
       :autofocus="inputOptions.autofocus"
-      :class="['vti__input', inputOptions.styleClasses]"
+      :class="['vti__input', inputOptions.styleClasses, inputClass]"
+      :style="[inputClass]"
       :disabled="disabled"
-      :id="inputOptions.id"
+      :id="inputId !== ''? inputId : inputOptions.id"
       :maxlength="inputOptions.maxlength"
       :name="inputOptions.name"
       :placeholder="parsedPlaceholder"
@@ -607,6 +641,7 @@ export default /*#__PURE__*/defineComponent({
       @keyup.enter="onEnter"
       @keyup.space="onSpace"
     />
+    <slot></slot> <!-- slot outlet -->
   </div>
 </template>
 <style scoped>
@@ -1749,7 +1784,7 @@ export default /*#__PURE__*/defineComponent({
   left: -1px;
   background-color: #fff;
   border: 1px solid #ccc;
-  width: 390px;
+  width: fit-content;
 }
 .vti__dropdown-list.below {
   top: 33px;

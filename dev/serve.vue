@@ -33,7 +33,13 @@ export default defineComponent({
 
 <template>
   <div id="app" v-cloak>
-    <vue3-reactive-tel-input v-model="phone" />
+    <vue3-reactive-tel-input 
+      v-model="phone" 
+      :rootStyle="{backgroundColor: '#EEEEEE'}" 
+      :inputStyle="{backgroundColor: '#EEEEEE'}" 
+      :listStyle="{backgroundColor: '#0EEAEE'}" 
+      :dropdownStyle="{backgroundColor: '#00EFEE'}" 
+      />
     <span v-text="phone"></span><br/>
     <span v-text="good"></span>
   </div>

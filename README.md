@@ -31,6 +31,119 @@ International Telephone Input with Vue.
   app.mount("#app");
   ```
 
+- props
+  ```javascript
+  function getDefault(key) {
+    const value = utils.options[key];
+    if (typeof value === 'undefined') {
+      return utils.options[key];
+    }
+    return value;
+
+  }
+
+  props: {
+    modelValue: {
+      type: String,
+      default: '',
+    },
+    badBorder: {
+      type: String,
+      default: '1px solid #c60303',
+    },
+    goodBorder: {
+      type: String,
+      default: '1px solid #45a045',
+    },
+    allCountries: {
+      type: Array,
+      default: () => getDefault('allCountries'),
+    },
+    autoFormat: {
+      type: Boolean,
+      default: () => getDefault('autoFormat'),
+    },
+    customValidate: {
+      type: [Boolean, RegExp],
+      default: () => getDefault('customValidate'),
+    },
+    defaultCountry: {
+      // Default country code, ie: 'AU'
+      // Will override the current country of user
+      type: String,
+      default: () => getDefault('defaultCountry'),
+    },
+    disabled: {
+      type: Boolean,
+      default: () => getDefault('disabled'),
+    },
+    autoDefaultCountry: {
+      type: Boolean,
+      default: () => getDefault('autoDefaultCountry'),
+    },
+    dropdownOptions: {
+      type: Object,
+      default: () => getDefault('dropdownOptions'),
+    },
+    ignoredCountries: {
+      type: Array,
+      default: () => getDefault('ignoredCountries'),
+    },
+    inputOptions: {
+      type: Object,
+      default: () => getDefault('inputOptions'),
+    },
+    invalidMsg: {
+      type: String,
+      default: () => getDefault('invalidMsg'),
+    },
+    mode: {
+      type: String,
+      default: () => getDefault('mode'),
+    },
+    onlyCountries: {
+      type: Array,
+      default: () => getDefault('onlyCountries'),
+    },
+    preferredCountries: {
+      type: Array,
+      default: () => getDefault('preferredCountries'),
+    },
+    validCharactersOnly: {
+      type: Boolean,
+      default: () => getDefault('validCharactersOnly'),
+    },
+    rootClass: {
+      type: [String, Array, Object],
+      default: () => getDefault('styleClasses'),
+    },
+    inputClass: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    rootStyle: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    dropdownStyle: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    listStyle: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    inputStyle: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    inputId: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+  }
+  ```
+
   [More info on installation](#installation)
 
 - Use the `vue3-reactive-tel-input` component:
@@ -42,7 +155,13 @@ International Telephone Input with Vue.
 
     <div class="container mt-2">
       <h2 class="text-black font-bold">Using data prop</h2>
-      <vue3-reactive-tel-input v-model:value="dataphone" />
+      <vue3-reactive-tel-input 
+        v-model:value="dataphone" 
+        :rootStyle="{backgroundColor: '#EEEEEE'}" 
+        :inputStyle="{backgroundColor: '#EEEEEE'}" 
+        :listStyle="{backgroundColor: '#0EEAEE'}" 
+        :dropdownStyle="{backgroundColor: '#00EFEE'}" 
+        />
 
       <span>data prop: {{ dataphone }}</span
       ><br />
@@ -50,7 +169,13 @@ International Telephone Input with Vue.
     </div>
     <div class="container mt-5">
       <h2 class="text-black font-bold">Using vuex data prop</h2>
-      <vue3-reactive-tel-input v-model:value="vuexphone" />
+      <vue3-reactive-tel-input 
+        v-model:value="vuexphone" 
+        :rootStyle="{backgroundColor: '#EEEEEE'}" 
+        :inputStyle="{backgroundColor: '#EEEEEE'}" 
+        :listStyle="{backgroundColor: '#0EEAEE'}" 
+        :dropdownStyle="{backgroundColor: '#00EFEE'}" 
+        />
 
       <span>data prop: {{ dataphone }}</span><br />
       <span>data prop: {{ fullDataPhoneFormated }}</span><br />
