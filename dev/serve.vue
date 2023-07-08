@@ -36,7 +36,7 @@ export default defineComponent({
     <vue3-reactive-tel-input 
       v-model="phone" 
       :rootStyle="{backgroundColor: '#EEEEEE'}" 
-      :inputStyle="{backgroundColor: '#EEEEEE'}" 
+      :inputStyle="{backgroundColor: '#EEFFEE'}" 
       :listStyle="{backgroundColor: '#0EEAEE'}" 
       :dropdownStyle="{backgroundColor: '#00EFEE'}" 
       />

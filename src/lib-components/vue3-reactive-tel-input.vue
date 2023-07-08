@@ -626,7 +626,7 @@ export default /*#__PURE__*/defineComponent({
       :autocomplete="inputOptions.autocomplete"
       :autofocus="inputOptions.autofocus"
       :class="['vti__input', inputOptions.styleClasses, inputClass]"
-      :style="[inputClass]"
+      :style="[inputStyle]"
       :disabled="disabled"
       :id="inputId !== ''? inputId : inputOptions.id"
       :maxlength="inputOptions.maxlength"

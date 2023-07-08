@@ -40,3 +40,11 @@ Added:
     - user can now design his own design of vue3-reactive-tel-input
 Changed:
 Fixed:
+
+
+[1.4.0] - 08-07-2023
+Author: @Viclegrand28
+Added:
+Changed:
+Fixed:
+    - inutStyle biniding fixed
