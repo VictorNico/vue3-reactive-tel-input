@@ -40,6 +40,8 @@ const baseConfig = {
     ],
     replace: {
       'process.env.NODE_ENV': JSON.stringify('production'),
+      'process.browser': true,
+      preventAssignment: true
     },
     vue: {
     },
