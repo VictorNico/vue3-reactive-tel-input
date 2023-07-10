@@ -22,13 +22,21 @@ export default /*#__PURE__*/defineComponent({
       type: String,
       default: '',
     },
-    badBorder: {
+    badClass: {
       type: String,
-      default: '1px solid #c60303',
+      default: 'border border-danger ',
     },
-    goodBorder: {
+    goodClass: {
       type: String,
-      default: '1px solid #45a045',
+      default: 'border border-success vue3-reactive-tel-input',
+    },
+    badStyle: {
+      type: String,
+      default: 'border border-danger ',
+    },
+    goodStyle: {
+      type: String,
+      default: 'border border-success vue3-reactive-tel-input',
     },
     allCountries: {
       type: Array,
@@ -116,6 +124,10 @@ export default /*#__PURE__*/defineComponent({
       type: [String, Array, Object],
       default: () => {return ''},
     },
+    Placeholder: {
+      type: String,
+      default: () => {return ''},
+    },
   },
   data() {
     return {
@@ -125,8 +137,6 @@ export default /*#__PURE__*/defineComponent({
         action: null,
         amount: null,
       },
-      bad: this.badBorder,
-      good: this.goodBorder,
       // vue3-reactive-tel-data
       phone: this.modelValue ? this.modelValue : '',
       activeCountryCode: '',
@@ -302,14 +312,25 @@ export default /*#__PURE__*/defineComponent({
 
       return phoneObject;
     },
-    idd(){
+    classes(){
       return this.phoneObject.valid === true 
                   ? 
-                  'good'
+                  this.goodClass
                   :
                   this.phoneObject.valid === false 
                       ?
-                      'bad'
+                      this.badClass
+                      :
+                      undefined
+    },
+    styles(){
+      return this.phoneObject.valid === true 
+                  ? 
+                  this.goodStyle
+                  :
+                  this.phoneObject.valid === false 
+                      ?
+                      this.badStyle
                       :
                       undefined
     },
@@ -575,7 +596,6 @@ export default /*#__PURE__*/defineComponent({
   <div 
     :class="['vue3-reactive-tel-input', rootClass, { disabled: disabled }]" 
     :style="[rootStyle]" 
-    :id="idd"
     >
     <div
       v-click-outside="clickedOutside"
@@ -625,8 +645,8 @@ export default /*#__PURE__*/defineComponent({
       :type="inputOptions.type"
       :autocomplete="inputOptions.autocomplete"
       :autofocus="inputOptions.autofocus"
-      :class="['vti__input', inputOptions.styleClasses, inputClass]"
-      :style="[inputStyle]"
+      :class="['vti__input', inputOptions.styleClasses, inputClass, classes]"
+      :style="[inputStyle,styles]"
       :disabled="disabled"
       :id="inputId !== ''? inputId : inputOptions.id"
       :maxlength="inputOptions.maxlength"
@@ -645,13 +665,6 @@ export default /*#__PURE__*/defineComponent({
   </div>
 </template>
 <style scoped>
-#bad {
-  border: v-bind('bad');
-}
-
-#good {
-  border: v-bind('good');
-}
 
 .vti__flag {
   width: 20px;

@@ -47,13 +47,21 @@ International Telephone Input with Vue.
       type: String,
       default: '',
     },
-    badBorder: {
+    badClass: {
       type: String,
-      default: '1px solid #c60303',
+      default: 'border border-danger ',
     },
-    goodBorder: {
+    goodClass: {
       type: String,
-      default: '1px solid #45a045',
+      default: 'border border-success vue3-reactive-tel-input',
+    },
+    badStyle: {
+      type: String,
+      default: 'border border-danger ',
+    },
+    goodStyle: {
+      type: String,
+      default: 'border border-success vue3-reactive-tel-input',
     },
     allCountries: {
       type: Array,
@@ -139,6 +147,10 @@ International Telephone Input with Vue.
     },
     inputId: {
       type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    Placeholder: {
+      type: String,
       default: () => {return ''},
     },
   }

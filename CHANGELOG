@@ -48,3 +48,10 @@ Added:
 Changed:
 Fixed:
     - inutStyle biniding fixed
+
+[1.6.0] - 10-07-2023
+Author: @Viclegrand28
+Added:
+    - badStyle, badClass, goodStyle, goodClass for input field
+Changed:
+Fixed:
