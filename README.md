@@ -221,6 +221,13 @@ International Telephone Input with Vue.
       default: () => {return ''},
     },
     /**
+     * the div input default class
+     */
+    divInputClass: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    /**
      * the root default style
      */
     rootStyle: {

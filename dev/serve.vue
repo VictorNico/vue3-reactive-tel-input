@@ -42,12 +42,7 @@ export default defineComponent({
       :goodInputClass="''" 
       :badInputStyle="'border: 1px solid #025896'" 
       />
-      <div class="view overlay">
-          <img src="https://mdbootstrap.com/img/Photos/Horizontal/City/6-col/img%20(3).webp" class="img-fluid " alt="">
-          <div class="mask flex-center rgba-red-strong">
-              <p class="white-text">Strong overlay</p>
-          </div>
-      </div>
+
       <!-- <vue3-reactive-tel-input 
       v-model="phone" 
       :rootClass="[]"
@@ -58,24 +53,66 @@ export default defineComponent({
       :goodInputClass="''" 
       :badInputClass="''" 
       /> -->
+      <vue3-reactive-tel-input 
+            v-model="phone"  
+            :rootClass="['field']" 
+            :divInputClass="['p-float-label']" 
+            :rootStyle="{
+              border:'none'
+            }" 
+            :listStyle="{backgroundColor: 'var(--surface-200)'}" 
+            :dropdownStyle="{
+              borderBottomLeftRadius: '6px',
+              borderTopLeftRadius: '6px',
+              background: '#e9ecef',
+              color: '#6c757d',
+              borderLeft: '1px solid #ced4da',
+              borderTop: '1px solid #ced4da',
+              borderBottom: '1px solid #ced4da',
+              paddingTop: '0.80rem',
+              paddingRight: '0.00075rem',
+              paddingBottom: '0.80rem',
+              paddingLeft: '0.00075rem',
+              }"
+            :inputStyle="{
+              backgroundColor: 'var(--surface-200)',
+              border: '1px solid #ced4da',
+              borderBottomRightRadius: '6px',
+              borderTopRightRadius: '6px',
+              height: '100%'
+            }"
+            :inputId="'phone'" 
+            :badInputClass="'border border-danger'" 
+            required 
+            >
+              <label for="phone" >ffdfd</label>
+            </vue3-reactive-tel-input>
     <span v-text="phone"></span><br/>
     <span v-text="good"></span>
   </div>
 </template>
 <style scoped>
-.vue3-reactive-tel-input:focus-within input.vti__input:focus, input.vti__input:active {
-  /* box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  border-color: #66afe9; */
-    border:none;
-    box-shadow: none;
-  
+.p-inputgroup>.p-component, .p-inputgroup>.p-inputwrapper>.p-inputtext, .p-inputgroup>.p-float-label>.p-component {
+    border-radius: 0;
+    margin: 0;
 }
-
-.vue3-reactive-tel-input input.vti__input:hover {
-  /* box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  border-color: #66afe9; */
-  /* box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(24, 52, 98, 1); */
-  border: 1px solid #183462;
-  
+.p-inputgroup .p-float-label:last-child input {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+.p-float-label label {
+    position: absolute;
+    pointer-events: none;
+    top: 50%;
+    margin-top: -.5rem;
+    -webkit-transition-property: all;
+    -o-transition-property: all;
+    -moz-transition-property: all;
+    transition-property: all;
+    -webkit-transition-timing-function: ease;
+    -moz-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+    line-height: 1;
 }
 </style>

@@ -196,6 +196,13 @@ export default /*#__PURE__*/defineComponent({
       default: () => {return ''},
     },
     /**
+     * the div input default class
+     */
+    divInputClass: {
+      type: [String, Array, Object],
+      default: () => {return ''},
+    },
+    /**
      * the root default style
      */
     rootStyle: {
@@ -770,6 +777,9 @@ export default /*#__PURE__*/defineComponent({
         </li>
       </ul>
     </div>
+    <div
+      :class="[divInputClass]"
+    >
     <input
       v-model="phone"
       ref="input"
@@ -793,6 +803,7 @@ export default /*#__PURE__*/defineComponent({
       @keyup.space="onSpace"
     />
     <slot></slot> <!-- slot outlet -->
+  </div>
   </div>
 </template>
 <style scoped>

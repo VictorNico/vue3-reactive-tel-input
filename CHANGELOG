@@ -56,9 +56,16 @@ Added:
 Changed:
 Fixed:
 
-[1.6.1] - 10-07-2023
+[1.7.0] - 10-07-2023
 Author: @Viclegrand28
 Added:
     - badStyle, badClass, goodStyle, goodClass for input and root elements
+Changed:
+Fixed:
+
+[1.8.0] - 10-07-2023
+Author: @Viclegrand28
+Added:
+    - div input class
 Changed:
 Fixed:
