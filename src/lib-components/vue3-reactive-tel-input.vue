@@ -18,112 +18,221 @@ export default /*#__PURE__*/defineComponent({
     clickOutside,
   },
   props: {
+    /**
+     * reactive value of the tel input
+     */
     modelValue: {
       type: String,
       default: '',
     },
+    /**
+     * class assign to root when the input number is invalid belong to the country code
+     */
     badClass: {
-      type: String,
-      default: 'border border-danger ',
+      type: [String, Array, Object],
+      default: '',
     },
+    /**
+     * class assign to root when the input number is valid belong to the country code
+     */
     goodClass: {
-      type: String,
-      default: 'border border-success vue3-reactive-tel-input',
+      type: [String, Array, Object],
+      default: '',
     },
+    /**
+     * style assign to root when the input number is invalid belong to the country code
+     */
     badStyle: {
-      type: String,
-      default: 'border border-danger ',
+      type: [String, Array, Object],
+      default: '',
     },
+    /**
+     * style assign to root when the input number is valid belong to the country code
+     */
     goodStyle: {
-      type: String,
-      default: 'border border-success vue3-reactive-tel-input',
+      type: [String, Array, Object],
+      default: '',
     },
+    /**
+     * class assign when the input number is invalid belong to the country code
+     */
+    badInputClass: {
+      type: [String, Array, Object],
+      default: '',
+    },
+    /**
+     * class assign when the input number is valid belong to the country code
+     */
+    goodInputClass: {
+      type: [String, Array, Object],
+      default: '',
+    },
+    /**
+     * style assign when the input number is invalid belong to the country code
+     */
+    badInputStyle: {
+      type: [String, Array, Object],
+      default: '',
+    },
+    /**
+     * style assign when the input number is valid belong to the country code
+     */
+    goodInputStyle: {
+      type: [String, Array, Object],
+      default: '',
+    },
+    /**
+     * list of all contries
+     */
     allCountries: {
       type: Array,
       default: () => getDefault('allCountries'),
     },
+    /**
+     * flag to know if the value will be automatically formatted
+     */
     autoFormat: {
       type: Boolean,
       default: () => getDefault('autoFormat'),
     },
+    /**
+     * customized validation RegExp or flag 
+     */
     customValidate: {
       type: [Boolean, RegExp],
       default: () => getDefault('customValidate'),
     },
+    /**
+     * a default country
+     */
     defaultCountry: {
       // Default country code, ie: 'AU'
       // Will override the current country of user
       type: String,
       default: () => getDefault('defaultCountry'),
     },
+    /**
+     * flag defining whether the input must be disabled
+     */
     disabled: {
       type: Boolean,
       default: () => getDefault('disabled'),
     },
+    /**
+     * flag definir if we'll automatically choose a default country
+     */
     autoDefaultCountry: {
       type: Boolean,
       default: () => getDefault('autoDefaultCountry'),
     },
+    /**
+     * object of dropdown options
+     */
     dropdownOptions: {
       type: Object,
       default: () => getDefault('dropdownOptions'),
     },
+    /**
+     * list of countries to ignore
+     */
     ignoredCountries: {
       type: Array,
       default: () => getDefault('ignoredCountries'),
     },
+    /**
+     * object of input options
+     */
     inputOptions: {
       type: Object,
       default: () => getDefault('inputOptions'),
     },
+    /**
+     * valid message to display
+     */
     invalidMsg: {
       type: String,
       default: () => getDefault('invalidMsg'),
     },
+    /**
+     * the mode of the input
+     */
     mode: {
       type: String,
       default: () => getDefault('mode'),
     },
+    /**
+     * limit the giving input to only manage your list of contry
+     */
     onlyCountries: {
       type: Array,
       default: () => getDefault('onlyCountries'),
     },
+    /**
+     * the list of preferred countries
+     */
     preferredCountries: {
       type: Array,
       default: () => getDefault('preferredCountries'),
     },
+    /**
+     * the flag defining if the input must only content valid characters
+     */
     validCharactersOnly: {
       type: Boolean,
       default: () => getDefault('validCharactersOnly'),
     },
+    /**
+     * the root default class
+     */
     rootClass: {
       type: [String, Array, Object],
       default: () => getDefault('styleClasses'),
     },
+    /**
+     * the input default class
+     */
     inputClass: {
       type: [String, Array, Object],
       default: () => {return ''},
     },
+    /**
+     * the root default style
+     */
     rootStyle: {
       type: [String, Array, Object],
       default: () => {return ''},
     },
+    /**
+     * the dropdown button style
+     */
     dropdownStyle: {
       type: [String, Array, Object],
       default: () => {return ''},
     },
+    /**
+     * the dropdown list style
+     */
     listStyle: {
       type: [String, Array, Object],
       default: () => {return ''},
     },
+    /**
+     * the input style
+     */
     inputStyle: {
       type: [String, Array, Object],
       default: () => {return ''},
     },
+    /**
+     * the input id 
+     */
     inputId: {
       type: [String, Array, Object],
       default: () => {return ''},
     },
+    /**
+     * the input placeholder
+     */
     Placeholder: {
       type: String,
       default: () => {return ''},
@@ -146,7 +255,7 @@ export default /*#__PURE__*/defineComponent({
       typeToFindInput: '',
       typeToFindTimer: null,
       dropdownOpenDirection: 'below',
-      parsedPlaceholder: this.inputOptions.placeholder,
+      parsedPlaceholder: this.Placeholder !== '' ? this.Placeholder : this.inputOptions.placeholder,
     };
   },
   watch: {
@@ -331,6 +440,28 @@ export default /*#__PURE__*/defineComponent({
                   this.phoneObject.valid === false 
                       ?
                       this.badStyle
+                      :
+                      undefined
+    },
+    Iclasses(){
+      return this.phoneObject.valid === true 
+                  ? 
+                  this.goodInputClass
+                  :
+                  this.phoneObject.valid === false 
+                      ?
+                      this.badInputClass
+                      :
+                      undefined
+    },
+    Istyles(){
+      return this.phoneObject.valid === true 
+                  ? 
+                  this.goodInputStyle
+                  :
+                  this.phoneObject.valid === false 
+                      ?
+                      this.badInputStyle
                       :
                       undefined
     },
@@ -594,8 +725,8 @@ export default /*#__PURE__*/defineComponent({
 
 <template>
   <div 
-    :class="['vue3-reactive-tel-input', rootClass, { disabled: disabled }]" 
-    :style="[rootStyle]" 
+    :class="['vue3-reactive-tel-input', rootClass, { disabled: disabled },classes]" 
+    :style="[rootStyle, styles]" 
     >
     <div
       v-click-outside="clickedOutside"
@@ -645,8 +776,8 @@ export default /*#__PURE__*/defineComponent({
       :type="inputOptions.type"
       :autocomplete="inputOptions.autocomplete"
       :autofocus="inputOptions.autofocus"
-      :class="['vti__input', inputOptions.styleClasses, inputClass, classes]"
-      :style="[inputStyle,styles]"
+      :class="['vti__input', inputOptions.styleClasses, inputClass, Iclasses]"
+      :style="[inputStyle, Istyles]"
       :disabled="disabled"
       :id="inputId !== ''? inputId : inputOptions.id"
       :maxlength="inputOptions.maxlength"
@@ -1749,10 +1880,7 @@ export default /*#__PURE__*/defineComponent({
 .vue3-reactive-tel-input.disabled input {
   cursor: no-drop;
 }
-.vue3-reactive-tel-input:focus-within {
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-  border-color: #66afe9;
-}
+
 
 .vti__dropdown {
   display: flex;

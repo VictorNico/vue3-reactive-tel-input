@@ -55,3 +55,10 @@ Added:
     - badStyle, badClass, goodStyle, goodClass for input field
 Changed:
 Fixed:
+
+[1.6.1] - 10-07-2023
+Author: @Viclegrand28
+Added:
+    - badStyle, badClass, goodStyle, goodClass for input and root elements
+Changed:
+Fixed:
