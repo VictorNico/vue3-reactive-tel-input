@@ -780,30 +780,30 @@ export default /*#__PURE__*/defineComponent({
     <div
       :class="[divInputClass]"
     >
-    <input
-      v-model="phone"
-      ref="input"
-      :type="inputOptions.type"
-      :autocomplete="inputOptions.autocomplete"
-      :autofocus="inputOptions.autofocus"
-      :class="['vti__input', inputOptions.styleClasses, inputClass, Iclasses]"
-      :style="[inputStyle, Istyles]"
-      :disabled="disabled"
-      :id="inputId !== ''? inputId : inputOptions.id"
-      :maxlength="inputOptions.maxlength"
-      :name="inputOptions.name"
-      :placeholder="parsedPlaceholder"
-      :readonly="inputOptions.readonly"
-      :required="inputOptions.required"
-      :tabindex="inputOptions.tabindex"
-      @blur="onBlur"
-      @focus="onFocus"
-      @input="onInput"
-      @keyup.enter="onEnter"
-      @keyup.space="onSpace"
-    />
-    <slot></slot> <!-- slot outlet -->
-  </div>
+      <input
+        v-model="phone"
+        ref="input"
+        :type="inputOptions.type"
+        :autocomplete="inputOptions.autocomplete"
+        :autofocus="inputOptions.autofocus"
+        :class="['vti__input', inputOptions.styleClasses, inputClass, Iclasses]"
+        :style="[inputStyle, Istyles]"
+        :disabled="disabled"
+        :id="inputId !== ''? inputId : inputOptions.id"
+        :maxlength="inputOptions.maxlength"
+        :name="inputId !== ''? inputId : inputOptions.name"
+        :placeholder="parsedPlaceholder"
+        :readonly="inputOptions.readonly"
+        :required="inputOptions.required"
+        :tabindex="inputOptions.tabindex"
+        @blur="onBlur"
+        @focus="onFocus"
+        @input="onInput"
+        @keyup.enter="onEnter"
+        @keyup.space="onSpace"
+      />
+      <slot></slot> <!-- slot outlet -->
+    </div>
   </div>
 </template>
 <style scoped>
